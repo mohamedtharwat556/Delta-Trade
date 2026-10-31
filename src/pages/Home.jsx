@@ -4,6 +4,7 @@ import { ArrowLeft, BadgePercent, Handshake, Store, Truck } from 'lucide-react'
 import ProductCard from '../components/product/ProductCard.jsx'
 import CategoryCard from '../components/category/CategoryCard.jsx'
 import SectionHead from '../components/ui/SectionHead.jsx'
+import SmartRecommendations from '../components/product/SmartRecommendations.jsx'
 import { topCategories } from '../data/categories.js'
 import { company } from '../data/company.js'
 import { useCatalog } from '../hooks/useCatalog.js'
@@ -168,6 +169,8 @@ export default function Home() {
         هذا المتجر نسخة واجهة تجريبية: الأسعار والكميات والطلبات المعروضة غير معتمدة من الشركة ولا
         يوجد اتصال بخادم أو قاعدة بيانات.
       </p>
+
+      <SmartRecommendations />
     </>
   )
 }
