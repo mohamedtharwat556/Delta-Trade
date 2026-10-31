@@ -39,7 +39,7 @@ export default function Header() {
             <Link to='/track' className='site-header__track'>
               <ReceiptText size={15} aria-hidden='true' /> تتبع الطلب
             </Link>
-            <Link to='/dashboard' className='site-header__track'>
+            <Link to='/admin' className='site-header__track'>
               <LayoutDashboard size={15} aria-hidden='true' /> لوحة التحكم
             </Link>
           </div>
@@ -111,7 +111,7 @@ export default function Header() {
             </li>
             {/* الشريط العلوي الداكن بيختفي على الموبايل، فاللوحة لازم لها مكان في القائمة نفسها */}
             <li>
-              <Link to='/dashboard' className='main-nav__link' onClick={() => setMenuOpen(false)}>
+              <Link to='/admin' className='main-nav__link' onClick={() => setMenuOpen(false)}>
                 لوحة التحكم
               </Link>
             </li>

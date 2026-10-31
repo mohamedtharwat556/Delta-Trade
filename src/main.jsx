@@ -9,6 +9,7 @@ import { ThemeProvider } from './context/ThemeContext.jsx'
 import { ReviewsProvider } from './context/ReviewsContext.jsx'
 import { WishlistProvider } from './context/WishlistContext.jsx'
 import { CouponProvider } from './context/CouponContext.jsx'
+import { AuthProvider } from './context/AuthContext.jsx'
 import './index.css'
 
 createRoot(document.getElementById('root')).render(
@@ -21,7 +22,9 @@ createRoot(document.getElementById('root')).render(
               <ReviewsProvider>
                 <WishlistProvider>
                   <CouponProvider>
-                    <App />
+                    <AuthProvider>
+                      <App />
+                    </AuthProvider>
                   </CouponProvider>
                 </WishlistProvider>
               </ReviewsProvider>
