@@ -25,7 +25,7 @@ const PRICE_RANGES = [
   { id: '200+', label: 'أكثر من 200 ج.م' },
 ]
 
-// عرض الأقسام كدوائر
+// عرض الأقسام كدوائر مع صور
 function CategoryCircle({ node, isSelected, count, onPick }) {
   return (
     <button
@@ -35,10 +35,17 @@ function CategoryCircle({ node, isSelected, count, onPick }) {
       aria-pressed={isSelected}
       title={`${node.name} - ${count.value} ${count.unit}`}
     >
-      <div className='category-circle__icon'>
-        <span className='category-circle__count'>{count.value}</span>
+      <div className='category-circle__image'>
+        {node.image ? (
+          <img src={node.image} alt={node.name} className='category-circle__img' />
+        ) : (
+          <div className='category-circle__placeholder'>
+            <span className='category-circle__count'>{count.value}</span>
+          </div>
+        )}
       </div>
       <span className='category-circle__name'>{node.name}</span>
+      <span className='category-circle__count-text'>{count.value} صنف</span>
     </button>
   )
 }
@@ -113,10 +120,13 @@ export default function Products() {
             onClick={() => catalog.setCategory('')}
             aria-pressed={!catalog.categoryId}
           >
-            <div className='category-circle__icon'>
-              <span className='category-circle__count'>{products.length}</span>
+            <div className='category-circle__image'>
+              <div className='category-circle__placeholder'>
+                <span className='category-circle__count'>{products.length}</span>
+              </div>
             </div>
             <span className='category-circle__name'>كل الأقسام</span>
+            <span className='category-circle__count-text'>{products.length} صنف</span>
           </button>
           {sections.map((category) => (
             <CategoryCircle
