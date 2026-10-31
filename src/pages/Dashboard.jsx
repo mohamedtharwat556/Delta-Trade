@@ -1,6 +1,6 @@
 import { useMemo, useEffect } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
-import { BadgePercent, ClipboardList, LayoutDashboard, LogOut, Package, Store, Truck, Users } from 'lucide-react'
+import { BadgePercent, ClipboardList, LayoutDashboard, Package, Store, Truck, Users } from 'lucide-react'
 import OverviewPanel from '../components/dashboard/OverviewPanel.jsx'
 import OrdersPanel from '../components/dashboard/OrdersPanel.jsx'
 import ProductsPanel from '../components/dashboard/ProductsPanel.jsx'
@@ -12,7 +12,6 @@ import { useCatalog } from '../hooks/useCatalog.js'
 import { useOrders } from '../hooks/useOrders.js'
 import { catalogHealth, customerGroups } from '../utils/analytics.js'
 import { usePageTitle } from '../hooks/usePageTitle.js'
-import { useAuth } from '../context/AuthContext.jsx'
 import { requestNotificationPermission } from '../utils/notifications.js'
 
 const TABS = [
@@ -30,7 +29,6 @@ export default function Dashboard() {
   const [searchParams, setSearchParams] = useSearchParams()
   const { orders, setOrderStatus, clearLocalOrders } = useOrders()
   const products = useCatalog()
-  const { logout } = useAuth()
   usePageTitle('لوحة التحكم')
 
   useEffect(() => {
@@ -85,9 +83,6 @@ export default function Dashboard() {
           <Link to='/' className='btn btn--ghost btn--sm dashboard-header__back'>
             <Store size={15} aria-hidden='true' /> العودة إلى المتجر
           </Link>
-          <button onClick={logout} className='btn btn--ghost btn--sm' title='تسجيل الخروج'>
-            <LogOut size={15} aria-hidden='true' /> خروج
-          </button>
         </div>
       </header>
 
