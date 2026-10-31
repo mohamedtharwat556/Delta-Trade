@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { MapPin } from 'lucide-react'
+import { MapPin, Phone, Mail, Clock } from 'lucide-react'
 import { company } from '../../data/company.js'
 import { topCategories } from '../../data/categories.js'
 import { footerLinks } from '../../data/navigation.js'
@@ -45,9 +45,17 @@ export default function Footer() {
               <MapPin size={15} aria-hidden='true' />
               <span>{company.contact.address}</span>
             </p>
-            <p className='site-footer__muted'>
-              الهاتف والبريد لم يُعتمدا بعد؛ تُضاف بيانات التواصل المعتمدة في{' '}
-              <code>src/data/company.js</code>.
+            <p className='site-footer__contact'>
+              <Phone size={15} aria-hidden='true' />
+              <a href={`tel:${company.contact.phone}`}>{company.contact.phone}</a>
+            </p>
+            <p className='site-footer__contact'>
+              <Mail size={15} aria-hidden='true' />
+              <a href={`mailto:${company.contact.email}`}>{company.contact.email}</a>
+            </p>
+            <p className='site-footer__hours'>
+              <Clock size={15} aria-hidden='true' />
+              <span>{company.contact.hours}</span>
             </p>
           </div>
         </div>
