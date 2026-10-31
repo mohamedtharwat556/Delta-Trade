@@ -75,6 +75,10 @@ export default function Products() {
     const group = categoryGroupIds(id)
     return sectionCount(id, products.filter((product) => group.has(product.categoryId)).length)
   }
+
+  const countByCategory = (id) => {
+    return sectionCount(id, products.filter((product) => product.categoryId === id).length)
+  }
   const countByTag = (id) => products.filter((product) => product.tags.includes(id)).length
   const sellingPrices = products.map((product) => priceForQuantity(product, 1).unit).filter((value) => value !== null)
   const priceSpan = sellingPrices.length
@@ -152,7 +156,7 @@ export default function Products() {
                 key={category.id}
                 node={category}
                 isSelected={catalog.categoryId === category.id}
-                count={countByGroup(category.id)}
+                count={countByCategory(category.id)}
                 onPick={(id) => catalog.setCategory(id)}
               />
             ))}
