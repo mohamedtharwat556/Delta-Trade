@@ -41,8 +41,8 @@ export default function App() {
           <Route path='contact' element={<Contact />} />
           <Route path='*' element={<NotFound />} />
         </Route>
-        <Route path='/admin' element={<Admin />} />
-        <Route path='/admin/login' element={<Login />} />
+        <Route path='admin' element={<Admin />} />
+        <Route path='admin/login' element={<Login />} />
       </Routes>
     </>
   )
