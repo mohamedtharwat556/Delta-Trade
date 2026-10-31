@@ -4129,6 +4129,54 @@
   object-fit: cover;
 }
 
+/* ---------- offers banner ---------- */
+.offers-banner {
+  background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  margin-bottom: var(--space-6);
+  color: #ffffff;
+  text-align: center;
+}
+
+.offers-banner__content h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: var(--space-2);
+}
+
+.offers-banner__content p {
+  font-size: 1.2rem;
+  font-weight: 600;
+  opacity: 0.95;
+}
+
+/* ---------- achievement cards ---------- */
+.achievement-card {
+  text-align: center;
+  padding: var(--space-5);
+  border: 2px solid var(--grey-200);
+  border-radius: var(--radius-lg);
+  transition: all var(--speed) var(--ease);
+}
+
+.achievement-card:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(11, 36, 64, 0.15);
+}
+
+.achievement-card__icon {
+  color: var(--color-primary);
+  margin-bottom: var(--space-3);
+}
+
+.achievement-card h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--grey-900);
+}
+
 /* ---------- categories circles ---------- */
 .categories-circles {
   display: grid;

@@ -9,6 +9,7 @@ import Compare from './pages/Compare.jsx'
 import Contact from './pages/Contact.jsx'
 import CustomerService from './pages/CustomerService.jsx'
 import Dashboard from './pages/Dashboard.jsx'
+import Featured from './pages/Featured.jsx'
 import Home from './pages/Home.jsx'
 import Invoice from './pages/Invoice.jsx'
 import NotFound from './pages/NotFound.jsx'
@@ -17,6 +18,7 @@ import OrderTracking from './pages/OrderTracking.jsx'
 import PickList from './pages/PickList.jsx'
 import ProductDetail from './pages/ProductDetail.jsx'
 import Products from './pages/Products.jsx'
+import SpecialOffers from './pages/SpecialOffers.jsx'
 import Wholesale from './pages/Wholesale.jsx'
 import Wishlist from './pages/Wishlist.jsx'
 
@@ -34,6 +36,8 @@ export default function App() {
           <Route path='cart' element={<CartPage />} />
           <Route path='wishlist' element={<Wishlist />} />
           <Route path='compare' element={<Compare />} />
+          <Route path='featured' element={<Featured />} />
+          <Route path='offers' element={<SpecialOffers />} />
           <Route path='customer-service' element={<CustomerService />} />
           <Route path='checkout' element={<Checkout />} />
           <Route path='order/:number' element={<OrderConfirmation />} />

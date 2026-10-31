@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Building2, CircleCheck, CircleAlert } from 'lucide-react'
+import { Building2, CircleCheck, CircleAlert, Award, Users, TrendingUp } from 'lucide-react'
 import SectionHead from '../components/ui/SectionHead.jsx'
 import { topCategories } from '../data/categories.js'
 import { company } from '../data/company.js'
@@ -10,6 +10,12 @@ const included = [
   { icon: CircleCheck, text: 'واجهة عربية RTL كاملة، وبنية ملفات قابلة للتوسّع.' },
   { icon: CircleCheck, text: 'سلة مشتريات تعمل وتُحفظ في متصفحك، مع تسعير جملة/قطاعي تلقائي.' },
   { icon: CircleAlert, text: 'المخزن في مركز الزرقا بمحافظة دمياط؛ الهاتف والبريد والأسعار ما زالت غير معتمدة.' },
+]
+
+const achievements = [
+  { icon: Users, text: 'خدمة أكثر من 1000 عميل سعيد' },
+  { icon: TrendingUp, text: 'نمو مبيعات سنوي 50%' },
+  { icon: Award, text: 'جودة منتجات ممتازة' },
 ]
 
 export default function About() {
@@ -33,6 +39,18 @@ export default function About() {
           </h2>
           <p className='section__subtitle'>{company.tagline}</p>
           <p className='u-mt-3'>{company.longAbout}</p>
+        </div>
+      </section>
+
+      <section className='section'>
+        <SectionHead title='إنجازاتنا' subtitle='ما حققناه في رحلتنا' />
+        <div className='grid grid--auto'>
+          {achievements.map((achievement, index) => (
+            <div key={index} className='card achievement-card'>
+              <achievement.icon size={32} className='achievement-card__icon' />
+              <h3>{achievement.text}</h3>
+            </div>
+          ))}
         </div>
       </section>
 
