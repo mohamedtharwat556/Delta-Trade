@@ -5,7 +5,9 @@ import About from './pages/About.jsx'
 import CartPage from './pages/CartPage.jsx'
 import Categories from './pages/Categories.jsx'
 import Checkout from './pages/Checkout.jsx'
+import Compare from './pages/Compare.jsx'
 import Contact from './pages/Contact.jsx'
+import CustomerService from './pages/CustomerService.jsx'
 import Dashboard from './pages/Dashboard.jsx'
 import Home from './pages/Home.jsx'
 import Invoice from './pages/Invoice.jsx'
@@ -31,6 +33,8 @@ export default function App() {
           <Route path='wholesale' element={<Wholesale />} />
           <Route path='cart' element={<CartPage />} />
           <Route path='wishlist' element={<Wishlist />} />
+          <Route path='compare' element={<Compare />} />
+          <Route path='customer-service' element={<CustomerService />} />
           <Route path='checkout' element={<Checkout />} />
           <Route path='order/:number' element={<OrderConfirmation />} />
           <Route path='invoice/:number' element={<Invoice />} />

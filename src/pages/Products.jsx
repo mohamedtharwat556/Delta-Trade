@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { RotateCcw, Search, SlidersHorizontal, Tag, X } from 'lucide-react'
 import ProductCard from '../components/product/ProductCard.jsx'
 import EmptyState from '../components/ui/EmptyState.jsx'
+import FlashSaleBanner from '../components/ui/FlashSaleBanner.jsx'
 import { categoryChain, categoryGroupIds, findCategory, sectionCount, subCategories, topCategories } from '../data/categories.js'
 import { company } from '../data/company.js'
 import { useCatalog } from '../hooks/useCatalog.js'
@@ -15,6 +16,21 @@ const TAG_OPTIONS = [
   { id: '', label: 'الكل' },
   { id: 'best-seller', label: 'الأكثر طلبًا' },
   { id: 'offer', label: 'عروض' },
+]
+
+const RATING_OPTIONS = [
+  { id: '', label: 'كل التقييمات' },
+  { id: '4', label: '⭐ 4 نجوم وأكثر' },
+  { id: '3', label: '⭐ 3 نجوم وأكثر' },
+  { id: '2', label: '⭐ 2 نجوم وأكثر' },
+  { id: '1', label: '⭐ نجمة وأكثر' },
+]
+
+const BRAND_OPTIONS = [
+  { id: '', label: 'كل العلامات التجارية' },
+  { id: 'delta', label: 'دلتا' },
+  { id: 'imported', label: 'مستورد' },
+  { id: 'local', label: 'محلي' },
 ]
 
 const PRICE_RANGES = [
@@ -58,6 +74,8 @@ export default function Products() {
   const sections = topCategories()
   const [priceRange, setPriceRange] = useState('')
   const [filtersOpen, setFiltersOpen] = useState(false)
+  const [ratingFilter, setRatingFilter] = useState('')
+  const [brandFilter, setBrandFilter] = useState('')
   const resetFilters = () => {
     catalog.reset()
     setPriceRange('')
@@ -118,6 +136,14 @@ export default function Products() {
           {products.length} صنف
         </p>
       </header>
+
+      {/* بانر عروض فلاش */}
+      {!catalog.categoryId && (
+        <FlashSaleBanner
+          endDate={new Date().getTime() + 24 * 60 * 60 * 1000}
+          discountPercent={30}
+        />
+      )}
 
       {/* وصف ترحيبي */}
       {!catalog.categoryId && (
@@ -273,6 +299,40 @@ export default function Products() {
                     >
                       <span>{option.label}</span>
                       {option.id ? <span className='filter-option__count'>{countByTag(option.id)}</span> : null}
+                    </button>
+                  ))}
+                </div>
+              </fieldset>
+
+              <fieldset className='filter-panel__group'>
+                <legend className='field-label'>التقييم</legend>
+                <div className='filter-list'>
+                  {RATING_OPTIONS.map((option) => (
+                    <button
+                      key={option.id || 'all'}
+                      type='button'
+                      className={`filter-option${option.id === ratingFilter ? ' is-active' : ''}`}
+                      onClick={() => setRatingFilter(option.id === ratingFilter ? '' : option.id)}
+                      aria-pressed={option.id === ratingFilter}
+                    >
+                      <span>{option.label}</span>
+                    </button>
+                  ))}
+                </div>
+              </fieldset>
+
+              <fieldset className='filter-panel__group'>
+                <legend className='field-label'>العلامة التجارية</legend>
+                <div className='filter-list'>
+                  {BRAND_OPTIONS.map((option) => (
+                    <button
+                      key={option.id || 'all'}
+                      type='button'
+                      className={`filter-option${option.id === brandFilter ? ' is-active' : ''}`}
+                      onClick={() => setBrandFilter(option.id === brandFilter ? '' : option.id)}
+                      aria-pressed={option.id === brandFilter}
+                    >
+                      <span>{option.label}</span>
                     </button>
                   ))}
                 </div>

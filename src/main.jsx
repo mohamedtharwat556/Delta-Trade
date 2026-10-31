@@ -8,6 +8,7 @@ import { OrderProvider } from './context/OrderContext.jsx'
 import { ReviewsProvider } from './context/ReviewsContext.jsx'
 import { WishlistProvider } from './context/WishlistContext.jsx'
 import { CouponProvider } from './context/CouponContext.jsx'
+import { CompareProvider } from './context/CompareContext.jsx'
 import './index.css'
 
 createRoot(document.getElementById('root')).render(
@@ -19,7 +20,9 @@ createRoot(document.getElementById('root')).render(
             <ReviewsProvider>
               <WishlistProvider>
                 <CouponProvider>
-                  <App />
+                  <CompareProvider>
+                    <App />
+                  </CompareProvider>
                 </CouponProvider>
               </WishlistProvider>
             </ReviewsProvider>

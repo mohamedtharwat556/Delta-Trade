@@ -8,6 +8,7 @@ import ProductImage from '../components/ui/ProductImage.jsx'
 import StockBadge from '../components/product/StockBadge.jsx'
 import EmptyState from '../components/ui/EmptyState.jsx'
 import ReviewCard from '../components/product/ReviewCard.jsx'
+import RelatedProducts from '../components/product/RelatedProducts.jsx'
 import {
   categoryChain,
   categoryNeighborhoodIds,
@@ -275,6 +276,8 @@ export default function ProductDetail() {
           </div>
         </section>
       ) : null}
+
+      {product ? <RelatedProducts currentProduct={product} /> : null}
     </>
   )
 }
