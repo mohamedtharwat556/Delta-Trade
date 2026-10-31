@@ -139,20 +139,17 @@ export default function OverviewPanel({ orders, onGoToTab }) {
           <h2>
             <TrendingUp size={18} aria-hidden='true' /> توزيع الطلبات على المراحل
           </h2>
-          <ul className='dash-bars'>
-            {statusCounts.map((row) => (
-              <li key={row.key}>
-                <span className='dash-bars__label'>{row.label}</span>
-                <span className='dash-bars__track'>
-                  <span
-                    className='dash-bars__fill'
-                    style={{ '--pct': `${Math.round((row.count / maxStatus) * 100)}%` }}
-                  />
-                </span>
-                <span className='dash-bars__value'>{formatNumber(row.count)}</span>
-              </li>
-            ))}
-          </ul>
+          <div className='chart-container'>
+            <div className='bar-chart'>
+              {statusCounts.map((row) => (
+                <div key={row.key} className='bar-chart__item'>
+                  <span className='bar-chart__label'>{row.label}</span>
+                  <div className='bar-chart__bar' style={{ '--percent': `${Math.round((row.count / maxStatus) * 100)}%` }} />
+                  <span className='bar-chart__value'>{formatNumber(row.count)}</span>
+                </div>
+              ))}
+            </div>
+          </div>
 
           {summary.topAreas.length ? (
             <>
@@ -206,17 +203,28 @@ export default function OverviewPanel({ orders, onGoToTab }) {
           </p>
 
           <h3 className='dash-card__sub'>عدد الأصناف لكل قسم</h3>
-          <ul className='dash-inline-list'>
-            {health.byCategory
-              .slice()
-              .sort((a, b) => b.count - a.count)
-              .map((row) => (
-                <li key={row.categoryId}>
-                  {categoryPathLabel(row.categoryId)}{' '}
-                  <span>{formatNumber(row.count)}</span>
-                </li>
-              ))}
-          </ul>
+          <div className='chart-container'>
+            <div className='pie-chart'>
+              {health.byCategory
+                .slice()
+                .sort((a, b) => b.count - a.count)
+                .slice(0, 6)
+                .map((row) => {
+                  const percent = (row.count / health.total) * 100
+                  const colors = ['#0b2440', '#1b4e80', '#123a63', '#146c43', '#c2410c', '#8a5a00']
+                  return (
+                    <div key={row.categoryId} className='pie-chart__item'>
+                      <div
+                        className='pie-chart__slice'
+                        style={{ '--color': colors[row.categoryId % colors.length], '--percent': `${percent}%` }}
+                      />
+                      <span className='pie-chart__label'>{categoryPathLabel(row.categoryId)}</span>
+                      <span className='pie-chart__value'>{formatNumber(row.count)}</span>
+                    </div>
+                  )
+                })}
+            </div>
+          </div>
         </section>
       </div>
 

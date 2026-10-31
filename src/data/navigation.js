@@ -3,6 +3,7 @@ export const navigation = [
   { to: '/products', label: 'المنتجات' },
   { to: '/categories', label: 'الأقسام' },
   { to: '/wholesale', label: 'البيع بالجملة' },
+  { to: '/wishlist', label: 'المفضلة' },
   { to: '/track', label: 'تتبع الطلب' },
 ]
 
@@ -13,6 +14,7 @@ export const footerLinks = [
       { to: '/products', label: 'كل المنتجات' },
       { to: '/products?tag=best-seller', label: 'الأكثر طلبًا' },
       { to: '/products?tag=offer', label: 'العروض' },
+      { to: '/wishlist', label: 'المفضلة' },
       { to: '/cart', label: 'سلة المشتريات' },
     ],
   },

@@ -66,3 +66,34 @@
   --ease: cubic-bezier(0.2, 0.6, 0.3, 1);
   --speed: 160ms;
 }
+
+/* ---------- Dark Mode ---------- */
+.dark {
+  --paper: #1a1a2e;
+  --grey-50: #1e1e3a;
+  --grey-100: #2a2a4a;
+  --grey-200: #3a3a5a;
+  --line: #4a4a6a;
+  --line-strong: #5a5a7a;
+
+  --ink: #e8e8f0;
+  --ink-soft: #c8c8d8;
+  --muted: #9898a8;
+
+  --blue-50: #1a2a4a;
+  --blue-100: #2a3a5a;
+
+  --navy-900: #2a3a5a;
+  --navy-800: #3a4a6a;
+  --navy-700: #4a5a7a;
+  --navy-600: #5a6a8a;
+
+  --offer-soft: #3a2a1a;
+  --success-soft: #1a3a2a;
+  --danger-soft: #3a1a2a;
+  --warning-soft: #3a3a1a;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 18px 48px rgba(0, 0, 0, 0.5);
+}

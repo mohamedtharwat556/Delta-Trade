@@ -2,8 +2,10 @@ import { company } from '../../data/company.js'
 import { formatPrice } from '../../utils/format.js'
 
 // delivery = null قبل اختيار المحافظة، فيظهر إجمالي الأصناف وحده
-export default function CartSummary({ summary, delivery = null, notice = null, children }) {
-  const payable = Math.round((summary.total + (delivery?.amount ?? 0)) * 100) / 100
+export default function CartSummary({ summary, delivery = null, notice = null, discount = 0, finalTotal = null, children }) {
+  const discountAmount = discount
+  const totalWithDiscount = finalTotal ?? summary.total
+  const payable = Math.round((totalWithDiscount + (delivery?.amount ?? 0)) * 100) / 100
 
   return (
     <section className='card cart-summary' aria-label='ملخص الطلب'>
@@ -28,6 +30,12 @@ export default function CartSummary({ summary, delivery = null, notice = null, c
             <dd>{formatPrice(summary.savings, company.currencyLabel)}</dd>
           </div>
         ) : null}
+        {discountAmount > 0 ? (
+          <div className='is-saving'>
+            <dt>خصم الكوبون</dt>
+            <dd>-{formatPrice(discountAmount, company.currencyLabel)}</dd>
+          </div>
+        ) : null}
         {delivery ? (
           <div>
             <dt>إجمالي الأصناف</dt>
@@ -50,7 +58,7 @@ export default function CartSummary({ summary, delivery = null, notice = null, c
         ) : (
           <div className='cart-summary__total'>
             <dt>الإجمالي</dt>
-            <dd>{formatPrice(summary.total, company.currencyLabel)}</dd>
+            <dd>{formatPrice(totalWithDiscount, company.currencyLabel)}</dd>
           </div>
         )}
       </dl>

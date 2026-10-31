@@ -17,6 +17,14 @@ const TAG_OPTIONS = [
   { id: 'offer', label: 'عروض' },
 ]
 
+const PRICE_RANGES = [
+  { id: '', label: 'كل الأسعار' },
+  { id: '0-50', label: 'أقل من 50 ج.م' },
+  { id: '50-100', label: '50 - 100 ج.م' },
+  { id: '100-200', label: '100 - 200 ج.م' },
+  { id: '200+', label: 'أكثر من 200 ج.م' },
+]
+
 // على الشاشات الضيقة الفلاتر طبقة يفتحها العميل ويغلقها، والقياس من نفس استعلام CSS حتى ما تنفصلش الحالة عن الشكل
 function isCompactCatalog() {
   return (
@@ -90,6 +98,7 @@ export default function Products() {
   const activeCategory = findCategory(catalog.categoryId)
   usePageTitle(activeCategory ? activeCategory.name : 'المنتجات')
   const sections = topCategories()
+  const [priceRange, setPriceRange] = useState('')
   // الشريط يبقى قصيرًا: لا مستوى يظهر إلا بطلب العميل، وممرّ القسم في الرابط يفتح تلقائيًا.
   // بعد أول تدخّل يبقى قرار العميل هو الحاكم لا الرابط (بلا setState داخل مفعول).
   const activeChain = catalog.categoryId ? categoryChain(catalog.categoryId).map((node) => node.id) : []
@@ -102,6 +111,7 @@ export default function Products() {
   }
   const resetFilters = () => {
     catalog.reset()
+    setPriceRange('')
     closeFiltersIfCompact()
   }
   // قسم مختار وفيه أقسام تحته يبقى مفتوحًا تلقائيًا، حتى لو جيت له برابط مباشر
@@ -134,6 +144,7 @@ export default function Products() {
     catalog.max,
     catalog.inStock ? 'in-stock' : '',
     catalog.query.trim(),
+    priceRange,
   ].filter(Boolean).length
   const countByGroup = (id) => {
     const group = categoryGroupIds(id)
@@ -145,6 +156,26 @@ export default function Products() {
   const priceSpan = sellingPrices.length
     ? { low: Math.min(...sellingPrices), high: Math.max(...sellingPrices) }
     : null
+
+  const handlePriceRange = (range) => {
+    setPriceRange(range)
+    if (range === '') {
+      catalog.setMin(null)
+      catalog.setMax(null)
+    } else if (range === '0-50') {
+      catalog.setMin(0)
+      catalog.setMax(50)
+    } else if (range === '50-100') {
+      catalog.setMin(50)
+      catalog.setMax(100)
+    } else if (range === '100-200') {
+      catalog.setMin(100)
+      catalog.setMax(200)
+    } else if (range === '200+') {
+      catalog.setMin(200)
+      catalog.setMax(null)
+    }
+  }
 
   return (
     <>
@@ -274,8 +305,28 @@ export default function Products() {
 
           <fieldset className='filter-panel__group'>
             <legend className='field-label'>
-              <Tag size={16} aria-hidden='true' /> السعر
+              <Tag size={16} aria-hidden='true' /> نطاق السعر
             </legend>
+            <div className='filter-list'>
+              {PRICE_RANGES.map((option) => (
+                <button
+                  key={option.id || 'all'}
+                  type='button'
+                  className={`filter-option${option.id === priceRange ? ' is-active' : ''}`}
+                  onClick={() => {
+                    handlePriceRange(option.id === priceRange ? '' : option.id)
+                    closeFiltersIfCompact()
+                  }}
+                  aria-pressed={option.id === priceRange}
+                >
+                  <span>{option.label}</span>
+                </button>
+              ))}
+            </div>
+          </fieldset>
+
+          <fieldset className='filter-panel__group'>
+            <legend className='field-label'>السعر المخصص</legend>
             <p className='filter-price__span'>
               {priceSpan
                 ? `في الكتالوج ${formatPrice(priceSpan.low, company.currencyLabel)} – ${formatPrice(

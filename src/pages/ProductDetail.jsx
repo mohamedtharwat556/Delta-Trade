@@ -1,12 +1,13 @@
 import { Fragment, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { ChevronLeft } from 'lucide-react'
+import { ChevronLeft, Star } from 'lucide-react'
 import AddToCart from '../components/product/AddToCart.jsx'
 import Price from '../components/product/Price.jsx'
 import ProductCard from '../components/product/ProductCard.jsx'
 import ProductImage from '../components/ui/ProductImage.jsx'
 import StockBadge from '../components/product/StockBadge.jsx'
 import EmptyState from '../components/ui/EmptyState.jsx'
+import ReviewCard from '../components/product/ReviewCard.jsx'
 import {
   categoryChain,
   categoryNeighborhoodIds,
@@ -17,6 +18,7 @@ import { describePack, formatNumber, formatPrice } from '../utils/format.js'
 import { availabilityOf, hasKnownPrice, innerCount } from '../utils/pricing.js'
 import { useCart } from '../hooks/useCart.js'
 import { usePageTitle } from '../hooks/usePageTitle.js'
+import { useReviews } from '../context/ReviewsContext.jsx'
 
 export default function ProductDetail() {
   const { slug } = useParams()
@@ -25,6 +27,20 @@ export default function ProductDetail() {
   usePageTitle(product?.name ?? 'الصنف غير موجود')
   const [quantity, setQuantity] = useState(1)
   const { lines } = useCart()
+  const { getProductReviews, getProductRating, addReview } = useReviews()
+  const [showReviewForm, setShowReviewForm] = useState(false)
+  const [reviewForm, setReviewForm] = useState({ author: '', comment: '', rating: 5 })
+
+  const reviews = product ? getProductReviews(product.id) : []
+  const avgRating = product ? getProductRating(product.id) : 0
+
+  const handleSubmitReview = (e) => {
+    e.preventDefault()
+    if (!product) return
+    addReview(product.id, reviewForm)
+    setReviewForm({ author: '', comment: '', rating: 5 })
+    setShowReviewForm(false)
+  }
 
   if (!product) {
     return (
@@ -155,6 +171,90 @@ export default function ProductDetail() {
           <div className='detail__buy'>
             <AddToCart product={product} value={quantity} onQuantityChange={setQuantity} />
           </div>
+
+          <section className='reviews-section'>
+            <div className='reviews-section__header'>
+              <h2>تقييمات العملاء</h2>
+              {avgRating > 0 && (
+                <div className='reviews-section__rating'>
+                  <Star size={20} className='reviews-section__star' aria-hidden='true' />
+                  <span className='reviews-section__avg'>{avgRating}</span>
+                  <span className='reviews-section__count'>({reviews.length} تقييم)</span>
+                </div>
+              )}
+            </div>
+
+            {reviews.length > 0 ? (
+              <div className='reviews-grid'>
+                {reviews.map((review) => (
+                  <ReviewCard key={review.id} review={review} />
+                ))}
+              </div>
+            ) : (
+              <p className='reviews-section__empty'>لا توجد تقييمات بعد. كن أول من يقيّم هذا المنتج!</p>
+            )}
+
+            {!showReviewForm ? (
+              <button
+                type='button'
+                className='btn btn--primary'
+                onClick={() => setShowReviewForm(true)}
+              >
+                أضف تقييمك
+              </button>
+            ) : (
+              <form className='review-form' onSubmit={handleSubmitReview}>
+                <h3>أضف تقييمك</h3>
+                <div className='review-form__field'>
+                  <label htmlFor='review-author'>الاسم</label>
+                  <input
+                    id='review-author'
+                    type='text'
+                    value={reviewForm.author}
+                    onChange={(e) => setReviewForm({ ...reviewForm, author: e.target.value })}
+                    required
+                  />
+                </div>
+                <div className='review-form__field'>
+                  <label>التقييم</label>
+                  <div className='review-form__rating'>
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <button
+                        key={star}
+                        type='button'
+                        className={star <= reviewForm.rating ? 'is-selected' : ''}
+                        onClick={() => setReviewForm({ ...reviewForm, rating: star })}
+                        aria-label={`${star} نجوم`}
+                      >
+                        <Star size={20} aria-hidden='true' />
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                <div className='review-form__field'>
+                  <label htmlFor='review-comment'>تعليقك</label>
+                  <textarea
+                    id='review-comment'
+                    value={reviewForm.comment}
+                    onChange={(e) => setReviewForm({ ...reviewForm, comment: e.target.value })}
+                    required
+                  />
+                </div>
+                <div className='review-form__actions'>
+                  <button type='submit' className='btn btn--primary'>
+                    إرسال التقييم
+                  </button>
+                  <button
+                    type='button'
+                    className='btn btn--ghost'
+                    onClick={() => setShowReviewForm(false)}
+                  >
+                    إلغاء
+                  </button>
+                </div>
+              </form>
+            )}
+          </section>
 
           <p className='notice'>
             {company.wholesale.demoNotice}

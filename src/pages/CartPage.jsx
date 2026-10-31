@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowLeft, ShoppingBag, Trash2 } from 'lucide-react'
+import { ArrowLeft, ShoppingBag, Trash2, Percent } from 'lucide-react'
 import CartLine from '../components/cart/CartLine.jsx'
 import CartSummary from '../components/cart/CartSummary.jsx'
 import EmptyState from '../components/ui/EmptyState.jsx'
@@ -10,12 +10,30 @@ import { freeShippingHint, wholesaleGate } from '../utils/delivery.js'
 import { formatPrice } from '../utils/format.js'
 import { company } from '../data/company.js'
 import { usePageTitle } from '../hooks/usePageTitle.js'
+import { useCoupons } from '../context/CouponContext.jsx'
 
 export default function CartPage() {
   const { lines, summary, clearCart } = useCart()
   usePageTitle('سلة المشتريات')
   const rules = useDeliveryRules()
+  const { appliedCoupon, applyCoupon, removeCoupon, calculateDiscount } = useCoupons()
   const [confirming, setConfirming] = useState(false)
+  const [couponCode, setCouponCode] = useState('')
+  const [couponError, setCouponError] = useState('')
+
+  const discount = calculateDiscount(summary.total)
+  const finalTotal = summary.total - discount
+
+  const handleApplyCoupon = (e) => {
+    e.preventDefault()
+    const result = applyCoupon(couponCode)
+    if (result.success) {
+      setCouponCode('')
+      setCouponError('')
+    } else {
+      setCouponError(result.error)
+    }
+  }
 
   const money = (value) => formatPrice(value, company.currencyLabel)
   const gate = lines.some((line) => line.basis === 'wholesale') ? wholesaleGate(summary.total, rules) : null
@@ -99,15 +117,48 @@ export default function CartPage() {
           </div>
         </section>
 
-        <CartSummary summary={summary} notice={chargesNotice()}>
-          <Link to='/checkout' className='btn btn--primary btn--lg cart-summary__cta'>
-            إتمام الطلب
-            <ArrowLeft size={18} aria-hidden='true' />
-          </Link>
-          <Link to='/products' className='btn btn--ghost btn--block'>
-            أضف أصنافًا أخرى
-          </Link>
-        </CartSummary>
+        <aside className='cart-sidebar'>
+          <CartSummary summary={summary} discount={discount} finalTotal={finalTotal} notice={chargesNotice()}>
+            <div className='coupon-section'>
+              {appliedCoupon ? (
+                <div className='coupon-applied'>
+                  <Percent size={16} aria-hidden='true' />
+                  <span className='coupon-applied__text'>
+                    كود {appliedCoupon.code}: {appliedCoupon.description}
+                  </span>
+                  <button
+                    type='button'
+                    className='coupon-applied__remove'
+                    onClick={removeCoupon}
+                  >
+                    إزالة
+                  </button>
+                </div>
+              ) : (
+                <form onSubmit={handleApplyCoupon} className='coupon-form'>
+                  <input
+                    type='text'
+                    className='coupon-form__input'
+                    placeholder='كود الخصم'
+                    value={couponCode}
+                    onChange={(e) => setCouponCode(e.target.value.toUpperCase())}
+                  />
+                  <button type='submit' className='btn btn--primary btn--sm'>
+                    تطبيق
+                  </button>
+                </form>
+              )}
+              {couponError && <div className='coupon-error'>{couponError}</div>}
+            </div>
+            <Link to='/checkout' className='btn btn--primary btn--lg cart-summary__cta'>
+              إتمام الطلب
+              <ArrowLeft size={18} aria-hidden='true' />
+            </Link>
+            <Link to='/products' className='btn btn--ghost btn--block'>
+              أضف أصنافًا أخرى
+            </Link>
+          </CartSummary>
+        </aside>
       </div>
     </>
   )
