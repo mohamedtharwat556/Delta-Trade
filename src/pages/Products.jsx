@@ -119,6 +119,15 @@ export default function Products() {
         </p>
       </header>
 
+      {/* وصف ترحيبي */}
+      {!catalog.categoryId && (
+        <div className='page-intro'>
+          <p className='page-intro__text'>
+            اكتشف تشكيلة واسعة من الخردوات والمنتجات الاستهلاكية في دلتا. اختر القسم الذي يناسبك وابدأ التسوق.
+          </p>
+        </div>
+      )}
+
       {/* عرض الأقسام الرئيسية كدوائر */}
       {!catalog.categoryId && (
         <div className='categories-circles'>
