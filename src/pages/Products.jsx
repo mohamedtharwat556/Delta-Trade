@@ -101,6 +101,10 @@ export default function Products() {
     }
   }
 
+  // التحقق من القسم الحالي وأقسامه الفرعية
+  const currentSubCategories = activeCategory ? subCategories(activeCategory.id) : []
+  const hasSubCategories = currentSubCategories.length > 0
+
   return (
     <>
       <header className='page-header'>
@@ -111,23 +115,9 @@ export default function Products() {
         </p>
       </header>
 
-      {/* عرض الأقسام كدوائر */}
+      {/* عرض الأقسام الرئيسية كدوائر */}
       {!catalog.categoryId && (
         <div className='categories-circles'>
-          <button
-            type='button'
-            className={`category-circle${!catalog.categoryId ? ' is-active' : ''}`}
-            onClick={() => catalog.setCategory('')}
-            aria-pressed={!catalog.categoryId}
-          >
-            <div className='category-circle__image'>
-              <div className='category-circle__placeholder'>
-                <span className='category-circle__count'>{products.length}</span>
-              </div>
-            </div>
-            <span className='category-circle__name'>كل الأقسام</span>
-            <span className='category-circle__count-text'>{products.length} صنف</span>
-          </button>
           {sections.map((category) => (
             <CategoryCircle
               key={category.id}
@@ -140,14 +130,51 @@ export default function Products() {
         </div>
       )}
 
-      {/* عرض المنتجات داخل القسم المختار */}
-      {catalog.categoryId && (
+      {/* عرض الأقسام الفرعية */}
+      {catalog.categoryId && hasSubCategories && (
         <>
           <div className='catalog-toolbar'>
             <button
               type='button'
               className='btn btn--ghost btn--sm'
               onClick={() => catalog.setCategory('')}
+            >
+              العودة للأقسام الرئيسية
+            </button>
+            <span className='catalog-toolbar__count'>
+              {currentSubCategories.length} قسم فرعي
+            </span>
+          </div>
+
+          <div className='categories-circles'>
+            {currentSubCategories.map((category) => (
+              <CategoryCircle
+                key={category.id}
+                node={category}
+                isSelected={catalog.categoryId === category.id}
+                count={countByGroup(category.id)}
+                onPick={(id) => catalog.setCategory(id)}
+              />
+            ))}
+          </div>
+        </>
+      )}
+
+      {/* عرض المنتجات داخل القسم المختار (بدون أقسام فرعية) */}
+      {catalog.categoryId && !hasSubCategories && (
+        <>
+          <div className='catalog-toolbar'>
+            <button
+              type='button'
+              className='btn btn--ghost btn--sm'
+              onClick={() => {
+                // العودة للقسم الرئيسي إذا كان هناك قسم رئيسي
+                if (activeCategory.parent) {
+                  catalog.setCategory(activeCategory.parent)
+                } else {
+                  catalog.setCategory('')
+                }
+              }}
             >
               العودة للأقسام
             </button>
