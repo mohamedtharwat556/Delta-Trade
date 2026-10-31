@@ -1,4 +1,4 @@
-import { Star } from 'lucide-react';
+import { Star, ImageIcon } from 'lucide-react';
 
 export default function ReviewCard({ review }) {
   return (
@@ -24,6 +24,11 @@ export default function ReviewCard({ review }) {
       </div>
       <p className="review-card__author">{review.author}</p>
       <p className="review-card__comment">{review.comment}</p>
+      {review.image && (
+        <div className="review-card__image">
+          <img src={review.image} alt="صورة المراجعة" />
+        </div>
+      )}
     </div>
   );
 }
