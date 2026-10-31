@@ -136,7 +136,7 @@ export default function ProductsPanel() {
     }
     setDraftCounts((current) => ({ ...current, [product.id]: '' }))
     notify(
-      `سجّلت عدّ ${product.name} (${formatNumber(result.entry.count)}) — رقم المخزون المكتوب لم يتغيّر`,
+      `سجّلت عدّ ${product.name} (${formatNumber(result.entry.count)})`,
       'info'
     )
   }
@@ -148,7 +148,7 @@ export default function ProductsPanel() {
       notify(`${product.name}: ${result.error}`, 'danger')
       return
     }
-    notify(`اعتمدت عدّ ${product.name}: المخزون صار ${formatNumber(result.stock)}`, 'success')
+    notify(`اعتمدت عدّ ${product.name}: ${formatNumber(result.stock)}`, 'success')
   }
 
   const dropCount = (product) => {
@@ -343,7 +343,7 @@ export default function ProductsPanel() {
                 <th scope='col'>قطاعي</th>
                 <th scope='col'>عرض</th>
                 <th scope='col'>جملة / الحد</th>
-                <th scope='col'>المخزون</th>
+                <th scope='col'>الكمية</th>
                 <th scope='col'>العدّ</th>
                 <th scope='col'>إجراءات</th>
               </tr>
@@ -384,7 +384,7 @@ export default function ProductsPanel() {
                           }`
                         : '—'}
                     </td>
-                    <td data-label='المخزون'>
+                    <td data-label='الكمية'>
                       <span className='chip chip--category'>{availability.label}</span>
                       <span className='dashboard-sub'>{formatNumber(product.stock ?? 0)} وحدة</span>
                     </td>
@@ -446,10 +446,10 @@ export default function ProductsPanel() {
                                   type='button'
                                   className='btn btn--ghost btn--sm'
                                   onClick={() => setApplyingId(product.id)}
-                                  aria-label={`اعتماد ${formatNumber(entry.count)} في المخزون`}
-                                  title='يكتب العدد المعدود في خانة المخزون لهذا الصنف'
+                                  aria-label={`اعتماد ${formatNumber(entry.count)}`}
+                                  title='يكتب العدد المعدود'
                                 >
-                                  اعتماد<span className='btn__text'> في المخزون</span>
+                                  اعتماد
                                 </button>
                               )}
                               <button
@@ -457,7 +457,7 @@ export default function ProductsPanel() {
                                 className='btn btn--ghost btn--danger-ghost btn--sm'
                                 onClick={() => dropCount(product)}
                                 aria-label='مسح العدّ المسجَّل'
-                                title='يحذف العدد المعدود بدون تغيير المخزون'
+                                title='يحذف العدد المعدود'
                               >
                                 مسح<span className='btn__text'> العدّ</span>
                               </button>
@@ -548,12 +548,7 @@ export default function ProductsPanel() {
 
       <p className='notice u-mt-4'>
         «الإخفاء» يُخرج الصنف من المتجر والسلة والتتبع، و«استرجاع البيانات الأصلية» يمسح كل تعديلات
-        اللوحة. لا تُحذف بيانات ملف المنتجات، ولا يُرسل أي شيء خارج المتصفح. خانة «المخزون» رقم تضبطه
-        أنت يدويًا — لا ينقص تلقائيًا مع الطلبات المسجّلة، فالمخزون الفعلي يبقى تحت جردك أنت. في عمود
-        «العدّ»: «تسجيل» يحفظ العدد المعدود في سجل منفصل داخل هذا المتصفح فقط ولا يمس رقم المخزون،
-        و«اعتماد في المخزون» — بخطوة تأكيد — هو وحده الذي يكتب العدد في الخانة. «مسح العدّ» يُسجّل عن
-        الصنف ولا يرجّع المخزون لقيمته القديمة. زر «تصدير الجرد» ينزّل الأصناف المعروضة بعد الفلاتر في
-        ملف CSV على جهازك، وفيه العدد المسجَّل والفارق إن وُجد.
+        اللوحة. لا تُحذف بيانات ملف المنتجات، ولا يُرسل أي شيء خارج المتصفح.
       </p>
     </>
   )

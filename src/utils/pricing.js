@@ -28,7 +28,7 @@ export function innerCount(product, quantity) {
   return pack * count
 }
 
-// كميات جاهزة للتاجر: عبوة، ثم حد الجملة ثم ضعفها — في حدود المخزون فقط (والمخزون المجهول بلا سقف)
+// كميات جاهزة للتاجر: عبوة، ثم حد الجملة ثم ضعفها
 export function quantityOptions(product, max) {
   const cap = toNumber(max)
   const min = Math.floor(toNumber(product?.wholesaleMinQuantity) ?? 0)
@@ -134,7 +134,7 @@ export function summarizeLines(lines) {
 export function availabilityOf(product) {
   const stock = toNumber(product?.stock)
   // العدد لسه ما اتسجلش من التاجر: حالة صريحة «غير محدَّد» بدل «غير متوفر الآن» الكاذبة
-  if (stock === null) return { key: 'unknown', label: 'المخزون غير محدَّد', stock: null }
+  if (stock === null) return { key: 'unknown', label: 'غير محدَّد', stock: null }
   if (stock <= 0) return { key: 'out', label: 'غير متوفر الآن', stock: 0 }
   if (stock <= 100) return { key: 'low', label: `متبقي ${stock} وحدة`, stock }
   return { key: 'in', label: 'متوفر', stock }

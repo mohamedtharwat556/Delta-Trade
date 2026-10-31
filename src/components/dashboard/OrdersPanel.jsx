@@ -419,7 +419,6 @@ export default function OrdersPanel({ orders, setOrderStatus, clearLocalOrders }
       <p className='notice u-mt-4'>
         الطلبات هنا تأتي من <code>src/data/orders.js</code> التجريبية ومن الطلبات المسجّلة في هذا
         المتصفح فقط. تغيير الحالة يُحدِّث صفحة التتبع نفسها، ولا يوجد خادم ولا بيانات عملاء حقيقية.
-        تسجيل الطلب لا ينقص المخزون: أرقام الأصناف في تبويب المنتجات تبقى كما هي إلى أن تجردها بنفسك.
       </p>
     </>
   )

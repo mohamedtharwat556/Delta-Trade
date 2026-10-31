@@ -260,7 +260,7 @@ export default function ProductDetail() {
             {company.wholesale.demoNotice}
             {!priced ? ' — سعر هذا الصنف لم يُحدَّد بعد، فلا يُضاف إلى السلة.' : ''}
             {availability.key === 'out' ? ' — الصنف غير متوفر حاليًا ولا يمكن إضافته للسلة.' : ''}
-            {availability.key === 'unknown' ? ' — عدد المخزون لسه لم يُسجَّل من اللوحة.' : ''}
+            {availability.key === 'unknown' ? ' — العدد لسه لم يُسجَّل من اللوحة.' : ''}
           </p>
         </div>
       </div>

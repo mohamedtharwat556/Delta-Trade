@@ -17,7 +17,7 @@ const PRICE_FIELDS = [
   { name: 'offerPrice', label: 'سعر العرض' },
   { name: 'wholesalePrice', label: 'سعر الجملة' },
   { name: 'wholesaleMinQuantity', label: 'حد الجملة (وحدات)', numeric: true },
-  { name: 'stock', label: 'المخزون المتاح', required: true, numeric: true },
+  { name: 'stock', label: 'الكمية المتاحة', required: true, numeric: true },
 ]
 
 export default function ProductEditor({ product, categoryOptions, imageOptions, onSubmit, onCancel }) {

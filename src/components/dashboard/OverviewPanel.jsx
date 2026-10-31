@@ -196,11 +196,7 @@ export default function OverviewPanel({ orders, onGoToTab }) {
             </div>
           </dl>
 
-          <p className='notice notice--inline u-mt-2'>
-            أرقام المخزون تُقرأ من <code>src/data/products.js</code> ومن تعديلاتك في اللوحة، ولا تُخصم
-            منها الطلبات المسجّلة: هي مؤشرات للعرض والتنبيه فقط. الجرد الفعلي تسجّله في عمود «العدّ»
-            بتبويب المنتجات، ولا يكتب في المخزون إلا بعد اعتمادك.
-          </p>
+
 
           <h3 className='dash-card__sub'>عدد الأصناف لكل قسم</h3>
           <div className='chart-container'>
@@ -235,7 +231,7 @@ export default function OverviewPanel({ orders, onGoToTab }) {
         {alerts.some((alert) => alert.count) ? (
           <>
             <p className='section__subtitle'>
-              التنبيهات مبنية على أرقام المخزون والأسعار في الكتالوج الحالي، لا على الكميات المحجوزة في
+              التنبيهات مبنية على الأسعار في الكتالوج الحالي، لا على الكميات المحجوزة في
               الطلبات.
             </p>
             <ul className='dash-alerts'>

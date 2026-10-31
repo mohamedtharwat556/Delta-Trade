@@ -1,17 +1,15 @@
 import { useState } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
-import { LayoutDashboard, Menu, Moon, ReceiptText, Search, ShoppingBag, Sun, X } from 'lucide-react'
+import { Menu, ReceiptText, Search, ShoppingBag, X } from 'lucide-react'
 import { company } from '../../data/company.js'
 import { navigation } from '../../data/navigation.js'
 import { useCart } from '../../hooks/useCart.js'
-import { useTheme } from '../../context/ThemeContext.jsx'
 import brandMark from '../../assets/brand-emblem.png'
 
 export default function Header() {
   const [isMenuOpen, setMenuOpen] = useState(false)
   const [term, setTerm] = useState('')
   const { summary, openDrawer } = useCart()
-  const { isDark, toggleTheme } = useTheme()
   const navigate = useNavigate()
 
   const submitSearch = (event) => {
@@ -27,20 +25,8 @@ export default function Header() {
         <div className='container site-header__topline-inner'>
           <p>{company.tagline}</p>
           <div className='site-header__topline-links'>
-            <button
-              type='button'
-              className='site-header__track'
-              onClick={toggleTheme}
-              aria-label={isDark ? 'تفعيل الوضع الفاتح' : 'تفعيل الوضع الليلي'}
-            >
-              {isDark ? <Sun size={15} aria-hidden='true' /> : <Moon size={15} aria-hidden='true' />}
-              {isDark ? 'فاتح' : 'ليلي'}
-            </button>
             <Link to='/track' className='site-header__track'>
               <ReceiptText size={15} aria-hidden='true' /> تتبع الطلب
-            </Link>
-            <Link to='/admin' className='site-header__track'>
-              <LayoutDashboard size={15} aria-hidden='true' /> لوحة التحكم
             </Link>
           </div>
         </div>
@@ -109,12 +95,7 @@ export default function Header() {
                 السلة ({summary.lineCount})
               </Link>
             </li>
-            {/* الشريط العلوي الداكن بيختفي على الموبايل، فاللوحة لازم لها مكان في القائمة نفسها */}
-            <li>
-              <Link to='/admin' className='main-nav__link' onClick={() => setMenuOpen(false)}>
-                لوحة التحكم
-              </Link>
-            </li>
+
           </ul>
         </div>
       </nav>
