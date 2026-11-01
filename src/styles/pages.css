@@ -4431,3 +4431,250 @@
   color: #ffffff;
   backdrop-filter: blur(10px);
 }
+
+/* ---------- Social Share ---------- */
+.social-share {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.social-share__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background-color: var(--paper);
+  color: var(--navy-800);
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all var(--speed) var(--ease);
+}
+
+.social-share__button:hover {
+  background-color: var(--navy-900);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.social-share__button span {
+  font-size: 0.8rem;
+}
+
+/* ---------- Trending Products ---------- */
+.trending-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 4px var(--space-2);
+  background: linear-gradient(135deg, #ef4444, #f97316);
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: var(--radius-pill);
+  animation: pulse 2s infinite;
+}
+
+/* ---------- Size Guide ---------- */
+.size-guide {
+  padding: var(--space-4);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background-color: var(--paper);
+  margin-block: var(--space-4);
+}
+
+.size-guide__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.size-guide__table th,
+.size-guide__table td {
+  padding: var(--space-2);
+  border: 1px solid var(--line);
+  text-align: center;
+}
+
+.size-guide__table th {
+  background-color: var(--navy-900);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* ---------- FAQ AI ---------- */
+.faq-ai {
+  padding: var(--space-4);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background-color: var(--paper);
+  margin-block: var(--space-4);
+}
+
+.faq-ai__input {
+  width: 100%;
+  padding: var(--space-3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  font: inherit;
+  font-size: 0.9rem;
+  margin-block-end: var(--space-3);
+}
+
+.faq-ai__answer {
+  padding: var(--space-3);
+  background-color: var(--blue-50);
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+/* ---------- Member-Only Deals ---------- */
+.member-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 4px var(--space-2);
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: var(--radius-pill);
+}
+
+/* ---------- Referral Program ---------- */
+.referral-code {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  background-color: var(--navy-900);
+  color: #ffffff;
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+}
+
+.referral-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--space-3);
+  margin-block: var(--space-4);
+}
+
+.referral-stat {
+  padding: var(--space-3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background-color: var(--paper);
+  text-align: center;
+}
+
+.referral-stat strong {
+  display: block;
+  font-size: 1.5rem;
+  color: var(--navy-900);
+  font-family: var(--font-mono);
+}
+
+.referral-stat span {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+/* ---------- Gift Cards ---------- */
+.gift-cards {
+  padding: var(--space-6);
+}
+
+.gift-cards__desc {
+  color: var(--muted);
+  margin-bottom: var(--space-4);
+}
+
+.gift-cards__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.gift-card {
+  padding: var(--space-4);
+  border: 2px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  text-align: center;
+  color: #ffffff;
+}
+
+.gift-card__icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto var(--space-3);
+}
+
+.gift-card h3 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: var(--space-3);
+}
+
+.gift-card .btn {
+  background-color: #ffffff;
+  color: #f59e0b;
+}
+
+.gift-cards__code {
+  margin-top: var(--space-4);
+}
+
+.gift-cards__code label {
+  display: block;
+  margin-bottom: var(--space-2);
+  font-weight: 600;
+}
+
+/* ---------- Wishlist Share ---------- */
+.wishlist-share {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: var(--space-4);
+}
+
+/* ---------- Referral Program ---------- */
+.referral-program {
+  padding: var(--space-6);
+}
+
+.referral-program__desc {
+  color: var(--muted);
+  margin-bottom: var(--space-4);
+}
+
+.referral-info {
+  margin-top: var(--space-6);
+  padding: var(--space-4);
+  background-color: var(--blue-50);
+  border-radius: var(--radius-md);
+}
+
+.referral-info h3 {
+  margin-bottom: var(--space-3);
+}
+
+.referral-info ol {
+  margin: 0;
+  padding-inline-start: var(--space-4);
+}
+
+.referral-info li {
+  margin-bottom: var(--space-2);
+  line-height: 1.7;
+}
