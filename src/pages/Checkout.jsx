@@ -77,6 +77,7 @@ export default function Checkout() {
   const { createOrder } = useOrders()
   const navigate = useNavigate()
   const [values, setValues] = useState(INITIAL_VALUES)
+  const [deliveryOption, setDeliveryOption] = useState('standard')
   const [errors, setErrors] = useState({})
   const [copied, setCopied] = useState(false)
   const [submitting, setSubmitting] = useState(false)
