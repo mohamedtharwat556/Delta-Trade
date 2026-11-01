@@ -1,4 +1,4 @@
-import { useCatalog } from '../../hooks/useCatalog.js'
+import { useCatalog } from '../hooks/useCatalog.js'
 
 export default function FeaturedToday() {
   const products = useCatalog()

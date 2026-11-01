@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom'
 import Layout from './components/layout/Layout.jsx'
 import Splash from './components/layout/Splash.jsx'
 import About from './pages/About.jsx'
+import Brands from './pages/Brands.jsx'
 import CartPage from './pages/CartPage.jsx'
 import Categories from './pages/Categories.jsx'
 import Checkout from './pages/Checkout.jsx'
@@ -9,15 +10,19 @@ import Compare from './pages/Compare.jsx'
 import Contact from './pages/Contact.jsx'
 import CustomerService from './pages/CustomerService.jsx'
 import Dashboard from './pages/Dashboard.jsx'
+import DiscountedProducts from './pages/DiscountedProducts.jsx'
 import Featured from './pages/Featured.jsx'
+import FeaturedToday from './pages/FeaturedToday.jsx'
 import Home from './pages/Home.jsx'
 import Invoice from './pages/Invoice.jsx'
 import NotFound from './pages/NotFound.jsx'
 import OrderConfirmation from './pages/OrderConfirmation.jsx'
 import OrderTracking from './pages/OrderTracking.jsx'
 import PickList from './pages/PickList.jsx'
+import PrivacyPolicy from './pages/PrivacyPolicy.jsx'
 import ProductDetail from './pages/ProductDetail.jsx'
 import Products from './pages/Products.jsx'
+import Sitemap from './pages/Sitemap.jsx'
 import SpecialOffers from './pages/SpecialOffers.jsx'
 import Wholesale from './pages/Wholesale.jsx'
 import Wishlist from './pages/Wishlist.jsx'
@@ -32,6 +37,11 @@ export default function App() {
           <Route path='products' element={<Products />} />
           <Route path='products/:slug' element={<ProductDetail />} />
           <Route path='categories' element={<Categories />} />
+          <Route path='brands' element={<Brands />} />
+          <Route path='discounted' element={<DiscountedProducts />} />
+          <Route path='featured-today' element={<FeaturedToday />} />
+          <Route path='sitemap' element={<Sitemap />} />
+          <Route path='privacy' element={<PrivacyPolicy />} />
           <Route path='wholesale' element={<Wholesale />} />
           <Route path='cart' element={<CartPage />} />
           <Route path='wishlist' element={<Wishlist />} />

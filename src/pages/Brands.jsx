@@ -1,4 +1,4 @@
-import { useCatalog } from '../../hooks/useCatalog.js'
+import { useCatalog } from '../hooks/useCatalog.js'
 
 export default function BrandsPage() {
   const products = useCatalog()
