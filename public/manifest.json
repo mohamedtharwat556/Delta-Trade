@@ -1,27 +1,22 @@
 {
-  "name": "الدلتا - تجارة وتوزيع الخردوات",
-  "short_name": "الدلتا",
-  "description": "الدلتا لتجارة وتوزيع الخردوات والمنتجات الاستهلاكية في مركز الزرقا بمحافظة دمياط",
+  "name": "Delta Store",
+  "short_name": "Delta",
+  "description": "متجر الدلتا للتجارة والتوزيع",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0b2440",
+  "background_color": "#ffffff",
   "theme_color": "#0b2440",
-  "orientation": "portrait-primary",
+  "orientation": "portrait",
   "icons": [
     {
-      "src": "/favicon.png",
+      "src": "/brand-logo.png",
       "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/png"
     },
     {
-      "src": "/favicon.png",
+      "src": "/brand-logo.png",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/png"
     }
-  ],
-  "categories": ["shopping", "retail"],
-  "lang": "ar",
-  "dir": "rtl"
+  ]
 }
