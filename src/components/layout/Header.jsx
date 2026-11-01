@@ -5,6 +5,8 @@ import { company } from '../../data/company.js'
 import { navigation } from '../../data/navigation.js'
 import { useCart } from '../../hooks/useCart.js'
 import brandMark from '../../assets/brand-emblem.png'
+import VoiceSearch from '../ui/VoiceSearch.jsx'
+import BrowserNotifications from '../ui/BrowserNotifications.jsx'
 
 export default function Header() {
   const [isMenuOpen, setMenuOpen] = useState(false)
@@ -28,6 +30,7 @@ export default function Header() {
             <Link to='/track' className='site-header__track'>
               <ReceiptText size={15} aria-hidden='true' /> تتبع الطلب
             </Link>
+            <BrowserNotifications />
           </div>
         </div>
       </div>
@@ -60,6 +63,7 @@ export default function Header() {
             value={term}
             onChange={(event) => setTerm(event.target.value)}
           />
+          <VoiceSearch onSearch={(text) => setTerm(text)} />
           <button type='submit' className='header-search__btn' aria-label='بحث'>
             <Search size={18} aria-hidden='true' />
           </button>

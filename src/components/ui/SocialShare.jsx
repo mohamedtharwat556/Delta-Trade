@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Share2, Facebook, Twitter, Whatsapp, Link as LinkIcon } from 'lucide-react'
+import { Share2, Link as LinkIcon, MessageCircle, Send } from 'lucide-react'
 
 export default function SocialShare({ product }) {
   const [copied, setCopied] = useState(false)
@@ -27,13 +27,13 @@ export default function SocialShare({ product }) {
   return (
     <div className='social-share'>
       <button className='social-share__button' onClick={shareOnFacebook} title='مشاركة على فيسبوك'>
-        <Facebook />
+        <MessageCircle />
       </button>
       <button className='social-share__button' onClick={shareOnTwitter} title='مشاركة على تويتر'>
-        <Twitter />
+        <Send />
       </button>
       <button className='social-share__button' onClick={shareOnWhatsapp} title='مشاركة على واتساب'>
-        <Whatsapp />
+        <MessageCircle />
       </button>
       <button className='social-share__button' onClick={copyLink} title='نسخ الرابط'>
         {copied ? <span>تم النسخ!</span> : <LinkIcon />}

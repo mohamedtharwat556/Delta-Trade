@@ -5,6 +5,7 @@ import Price from './Price.jsx'
 import StockBadge from './StockBadge.jsx'
 import AddToCart from './AddToCart.jsx'
 import CategoryIcon from '../ui/CategoryIcon.jsx'
+import StockDisplay from '../ui/StockDisplay.jsx'
 import { categoryChain } from '../../data/categories.js'
 import { company } from '../../data/company.js'
 import { describePack, formatPrice } from '../../utils/format.js'
@@ -65,6 +66,7 @@ export default function ProductCard({ product, priority = false, index = 0, note
 
         <div className='product-card__foot'>
           <StockBadge product={product} />
+          <StockDisplay stock={product.stock} maxStock={100} />
           <AddToCart product={product} compact />
         </div>
       </div>

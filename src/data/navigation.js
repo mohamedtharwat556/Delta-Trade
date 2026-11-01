@@ -12,8 +12,9 @@ export const footerLinks = [
     title: 'المتجر',
     items: [
       { to: '/products', label: 'كل المنتجات' },
-      { to: '/products?tag=best-seller', label: 'الأكثر طلبًا' },
-      { to: '/products?tag=offer', label: 'العروض' },
+      { to: '/discounted', label: 'المنتجات المخفضة' },
+      { to: '/featured-today', label: 'مميز اليوم' },
+      { to: '/brands', label: 'العلامات التجارية' },
       { to: '/wishlist', label: 'المفضلة' },
       { to: '/cart', label: 'سلة المشتريات' },
     ],
@@ -32,7 +33,8 @@ export const footerLinks = [
     items: [
       { to: '/wholesale', label: 'شروط الجملة' },
       { to: '/track', label: 'تتبع الطلب' },
-      { to: '/dashboard', label: 'لوحة التحكم (تجريبية)' },
+      { to: '/sitemap', label: 'خريطة الموقع' },
+      { to: '/privacy', label: 'سياسة الخصوصية' },
       { to: '/about', label: 'عن الشركة' },
       { to: '/contact', label: 'تواصل معنا' },
     ],

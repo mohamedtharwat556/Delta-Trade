@@ -9,6 +9,9 @@ import StockBadge from '../components/product/StockBadge.jsx'
 import EmptyState from '../components/ui/EmptyState.jsx'
 import ReviewCard from '../components/product/ReviewCard.jsx'
 import RelatedProducts from '../components/product/RelatedProducts.jsx'
+import StarRating from '../components/ui/StarRating.jsx'
+import SocialShare from '../components/ui/SocialShare.jsx'
+import ARProductPreview from '../components/ui/ARProductPreview.jsx'
 import {
   categoryChain,
   categoryNeighborhoodIds,
@@ -114,6 +117,9 @@ export default function ProductDetail() {
                 : 'وحدة البيع لسه بتُحدَّد'}
             </p>
             <StockBadge product={product} />
+            <StarRating rating={avgRating} onRate={(rating) => {}} readonly />
+            <SocialShare product={product} />
+            <ARProductPreview product={product} />
             {inCart ? (
               <p className='detail__in-cart'>
                 في سلتك بالفعل: {inCart.quantity} {product.unit} — الإضافة تزيد الكمية ولا تكرّر الصنف.

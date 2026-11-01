@@ -5,6 +5,7 @@ import Footer from './Footer.jsx'
 import CartDrawer from '../cart/CartDrawer.jsx'
 import CartBar from '../cart/CartBar.jsx'
 import CartToast from '../ui/CartToast.jsx'
+import AIChatbot from '../ui/AIChatbot.jsx'
 import { useCart } from '../../hooks/useCart.js'
 import { useStickyHeaderOffset } from '../../hooks/useStickyHeaderOffset.js'
 import { isCartBarVisible } from '../../utils/cartBar.js'
@@ -35,6 +36,7 @@ export default function Layout() {
       {hasCartBar ? <CartBar /> : null}
       <CartDrawer />
       <CartToast />
+      <AIChatbot />
     </div>
   )
 }

@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import { Check, ClipboardCopy, Send } from 'lucide-react'
 import CartSummary from '../components/cart/CartSummary.jsx'
 import EmptyState from '../components/ui/EmptyState.jsx'
+import FreeDeliveryBadge from '../components/ui/FreeDeliveryBadge.jsx'
+import PaymentMethods from '../components/ui/PaymentMethods.jsx'
 import { company } from '../data/company.js'
 import { governorates } from '../data/governorates.js'
 import { useCart } from '../hooks/useCart.js'
@@ -294,6 +296,8 @@ export default function Checkout() {
         </section>
 
         <CartSummary summary={summary} delivery={quote} notice={deliveryNotice()}>
+          <FreeDeliveryBadge threshold={200} currentTotal={summary.total} />
+          <PaymentMethods />
           <div className='checkout-lines'>
             <h3>أصناف الطلب</h3>
             <ul className='checkout-lines__list'>
