@@ -5778,6 +5778,122 @@ img {
   50% { opacity: 0.7; }
 }
 
+/* ---------- Swipe Gestures ---------- */
+.swipe-container {
+  position: relative;
+  overflow: hidden;
+  touch-action: pan-y;
+}
+
+.swipe-indicator {
+  position: absolute;
+  bottom: var(--space-2);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: var(--space-1);
+  opacity: 0.5;
+}
+
+.swipe-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--navy-900);
+  transition: all 0.3s ease;
+}
+
+.swipe-dot.is-active {
+  width: 20px;
+  border-radius: 4px;
+  background-color: var(--color-primary);
+}
+
+/* ---------- Pull-to-Refresh ---------- */
+.pull-to-refresh {
+  position: relative;
+  min-height: 100vh;
+}
+
+.pull-to-refresh__indicator {
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background-color: var(--navy-900);
+  color: #ffffff;
+  border-radius: var(--radius-md);
+  transition: top 0.3s ease;
+}
+
+.pull-to-refresh__indicator.is-visible {
+  top: var(--space-4);
+}
+
+.pull-to-refresh__spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ---------- Bottom Navigation Bar ---------- */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--paper);
+  border-top: 1px solid var(--line);
+  z-index: 1000;
+}
+
+@media (min-width: 768px) {
+  .bottom-nav {
+    display: none;
+  }
+}
+
+.bottom-nav__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-2);
+  border: none;
+  background: none;
+  color: var(--grey-500);
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.bottom-nav__item.is-active {
+  color: var(--color-primary);
+}
+
+.bottom-nav__item:hover {
+  color: var(--navy-900);
+}
+
+.bottom-nav__icon {
+  width: 24px;
+  height: 24px;
+}
+
 /* ---------- Brands Page ---------- */
 .brands-page {
   padding: var(--space-6);
