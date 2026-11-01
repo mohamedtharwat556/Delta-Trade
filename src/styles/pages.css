@@ -3641,7 +3641,7 @@
 /* ---------- Admin Layout (Separate from Main Site) ---------- */
 .admin-layout {
   min-block-size: 100vh;
-  background-color: #1a1a2e;
+  background-color: #ffffff;
   display: grid;
   grid-template-rows: auto 1fr;
 }
@@ -3652,8 +3652,8 @@
   justify-content: space-between;
   gap: var(--space-4);
   padding: var(--space-4) var(--space-6);
-  background-color: #0b2440;
-  border-bottom: 2px solid #1b4e80;
+  background-color: var(--navy-900);
+  border-bottom: 2px solid var(--navy-700);
 }
 
 .admin-header__brand {
@@ -3683,7 +3683,7 @@
   align-items: center;
   gap: var(--space-2);
   padding: var(--space-2) var(--space-4);
-  border: 1px solid #3a4a6a;
+  border: 1px solid var(--navy-600);
   border-radius: var(--radius-md);
   background-color: transparent;
   color: #ffffff;
@@ -3694,8 +3694,8 @@
 }
 
 .admin-header__link:hover {
-  background-color: #3a4a6a;
-  border-color: #5a6a8a;
+  background-color: var(--navy-700);
+  border-color: var(--navy-800);
 }
 
 .admin-header__logout {
@@ -3703,10 +3703,10 @@
   align-items: center;
   gap: var(--space-2);
   padding: var(--space-2) var(--space-4);
-  border: 1px solid #c2410c;
+  border: 1px solid var(--danger);
   border-radius: var(--radius-md);
   background-color: transparent;
-  color: #ef4444;
+  color: var(--danger);
   font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
@@ -3714,20 +3714,21 @@
 }
 
 .admin-header__logout:hover {
-  background-color: #c2410c;
+  background-color: var(--danger);
   color: #ffffff;
 }
 
 .admin-main {
   padding: var(--space-6);
   overflow-y: auto;
+  background-color: var(--grey-50);
 }
 
 .admin-loading {
   display: grid;
   place-items: center;
   min-block-size: 50vh;
-  color: #ffffff;
+  color: var(--navy-900);
   font-size: 1.2rem;
 }
 
@@ -3735,7 +3736,7 @@
   display: inline-block;
   padding: var(--space-4) var(--space-6);
   border-radius: var(--radius-md);
-  background-color: #1b4e80;
+  background-color: var(--navy-900);
   color: #ffffff;
   text-decoration: none;
   font-size: 1rem;
