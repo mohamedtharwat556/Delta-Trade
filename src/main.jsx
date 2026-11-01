@@ -11,6 +11,7 @@ import { CouponProvider } from './context/CouponContext.jsx'
 import { CompareProvider } from './context/CompareContext.jsx'
 import { LoyaltyProvider } from './context/LoyaltyContext.jsx'
 import './index.css'
+import './styles/mobile.css'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

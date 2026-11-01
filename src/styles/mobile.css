@@ -1,0 +1,33 @@
+@media (max-width: 768px) {
+  .site-header__topline-links {
+    display: none;
+  }
+
+  .category-circle {
+    width: 100%;
+    height: auto;
+    padding: var(--space-3);
+  }
+
+  .category-circle__image {
+    width: 80px;
+    height: 80px;
+  }
+
+  .flash-sale-banner__content {
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .flash-sale-banner__timer {
+    padding: var(--space-3);
+  }
+
+  .flash-sale-banner__time-block {
+    min-width: 50px;
+  }
+
+  .flash-sale-banner__time-value {
+    font-size: 1.5rem;
+  }
+}
